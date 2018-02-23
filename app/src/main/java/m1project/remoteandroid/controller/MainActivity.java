@@ -1,4 +1,4 @@
-package m1project.remoteandroid;
+package m1project.remoteandroid.controller;
 
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -15,6 +15,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import m1project.remoteandroid.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
