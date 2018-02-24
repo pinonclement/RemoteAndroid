@@ -1,15 +1,18 @@
 package m1project.remoteandroid;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,14 +23,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     TableLayout t1;
 
+    View.OnClickListener btnclick = new View.OnClickListener() {
+
+        //gestion d'un clic simple sur un ecran
+        @Override
+        public void onClick(View view) {
+
+            switch (view.getId()) {
+                //case 1:
+                    //break;
+                //Second button click
+
+                default:
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle("Attention");
+                    alertDialog.setMessage("Click recu sur le bouton " + view.getId());
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+            }
+
+        }
+    };
+
+    View.OnLongClickListener btnclicklong = new View.OnLongClickListener() {
+
+        //gestion d'un clic long sur un ecran
+        public boolean onLongClick(View view) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            switch (view.getId()) {
+                case 1:
+
+                    break;
+                //Second button click
+
+
+                default:
+
+                    if (drawer.isDrawerOpen(GravityCompat.END)) {
+                        drawer.closeDrawer(GravityCompat.END);
+                        return true;
+                    } else {
+                        drawer.openDrawer(GravityCompat.END);
+                        return true;
+                    }
+            }
+
+            return true;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //remove statusbar
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         TableCreation(4, 4);
 
-   /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -76,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView2.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -166,27 +229,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void TableCreation(int nbrow, int nbcolumns) {
         TableLayout tl = (TableLayout) findViewById(R.id.main_table);
         int first_id = 1;
-        for (int i=1; i<=nbrow; i++){
+        for (int i = 1; i <= nbrow; i++) {
             TableRow newrow = new TableRow(this);
-            newrow.setId(i*10);
+            newrow.setId(i * 10);
             newrow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 
-            for (int j=1; j<=nbrow; j++){
+            for (int j = 1; j <= nbrow; j++) {
                 Button btn = new Button(new ContextThemeWrapper(getBaseContext(), R.style.MyButton));
                 btn.setId(first_id);
                 int id_ = btn.getId();
-                btn.setText(""+id_+"");
+                btn.setText("" + id_ + "");
                 btn.setTextColor(getResources().getColor(R.color.colorWhite));
                 btn.setTextSize(24);
-                btn.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,     TableLayout.LayoutParams.FILL_PARENT));
+                btn.setOnClickListener(btnclick);
+                btn.setOnLongClickListener(btnclicklong);
+                btn.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.FILL_PARENT));
                 newrow.addView(btn);
-                first_id ++;
+                first_id++;
             }
 
-            tl.addView(newrow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT,1
+            tl.addView(newrow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT, 1
             ));
 
         }
 
     }
+
+
 }
