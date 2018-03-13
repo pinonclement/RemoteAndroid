@@ -22,58 +22,13 @@
         >
 
         <TableLayout
+            android:id="@+id/tablelayoutdrawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
             android:layout_marginTop="30dp">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical|center|clip_horizontal"
-                android:gravity="center_vertical|center_horizontal">
 
-                <ImageButton
-                    android:id="@+id/btn_sing_in"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="bottom|center_horizontal|center|start"
-                    android:src="@drawable/ic_play_white"
-                    android:textColor="@color/colorWhite"
-                    android:theme="@style/MyButton" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btn_sing_in3"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/ic_pause_white"
-                    android:textColor="@color/colorWhite"
-                    android:theme="@style/MyButton" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <ImageButton
-                    android:id="@+id/btn_sing_in2"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/ic_stop_white"
-                    android:textColor="@color/colorWhite"
-                    android:theme="@style/MyButton" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </TableLayout>
 
     </android.support.design.widget.NavigationView>

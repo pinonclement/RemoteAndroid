@@ -17,6 +17,9 @@ public class Scenario {
     int volume;
     Float departure;
 
+    // scenario = video
+    // creer new class  Scenario qui contient liste video ( voir json prof)
+
     public Scenario(Ecran video, String file, List screens, boolean distributed) {
         this.video = video;
         this.file = file;
@@ -26,7 +29,9 @@ public class Scenario {
         this.state = true;
         this.loop = false;
         this.volume = 10;
-        this.departure = 0.0;
+        //this.departure = 0.0;
+
+        //liste screen : cle valeur : id ecran, position
     }
 
     public String getFile() {

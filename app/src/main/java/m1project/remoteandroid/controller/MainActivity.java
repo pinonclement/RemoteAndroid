@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ import m1project.remoteandroid.R;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     TableLayout t1;
-
+    int selectid = 0;
+    //pas de popup
+    // ajouter etat a a chaque ecran
     View.OnClickListener btnclick = new View.OnClickListener() {
 
         //gestion d'un clic simple sur un ecran
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             switch (view.getId()) {
                 //case 1:
-                    //break;
+                //break;
                 //Second button click
 
                 default:
@@ -53,30 +56,101 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+
+    View.OnClickListener btnclickdrawer = new View.OnClickListener() {
+
+        //gestion d'un clic simple sur un ecran
+        @Override
+        public void onClick(View view) {
+
+
+            switch (view.getId()) {
+
+                case 100:
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle("Attention");
+                    alertDialog.setMessage("Play/Pause bouton" + selectid);
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                case 101:
+                    AlertDialog alertDialog1 = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog1.setTitle("Attention");
+                    alertDialog1.setMessage("Stop Bouton" + selectid);
+                    alertDialog1.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog1.show();
+                    break;
+                case 102:
+                    AlertDialog alertDialog2 = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog2.setTitle("Attention");
+                    alertDialog2.setMessage("FullScreen bouton" + selectid);
+                    alertDialog2.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog2.show();
+                    break;
+                case 103:
+                    AlertDialog alertDialog3 = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog3.setTitle("Attention");
+                    alertDialog3.setMessage("Mute bouton" + selectid);
+                    alertDialog3.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog3.show();
+                    break;
+                //break;
+                //Second button click
+
+                default:
+
+                    break;
+            }
+            selectid=0;
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+
+            } else {
+                drawer.openDrawer(GravityCompat.START);
+
+            }
+
+        }
+    };
+
     View.OnLongClickListener btnclicklong = new View.OnLongClickListener() {
 
         //gestion d'un clic long sur un ecran
         public boolean onLongClick(View view) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            switch (view.getId()) {
-                case 1:
 
-                    break;
-                //Second button click
-
-
-                default:
-
-                    if (drawer.isDrawerOpen(GravityCompat.END)) {
-                        drawer.closeDrawer(GravityCompat.END);
-                        return true;
-                    } else {
-                        drawer.openDrawer(GravityCompat.END);
-                        return true;
-                    }
+            selectid=view.getId();
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            } else {
+                drawer.openDrawer(GravityCompat.START);
+                return true;
             }
 
-            return true;
+
         }
     };
 
@@ -90,6 +164,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         TableCreation(4, 4);
+        ButtonDrawer();
+
+
 
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
@@ -163,6 +240,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
     */
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -257,5 +336,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void ButtonDrawer() {
+        TableLayout tl = (TableLayout) findViewById(R.id.tablelayoutdrawer);
+        int first_id = 100;
+        for (int i = 1; i <= 4; i++) {
+            TableRow newrow = new TableRow(this);
+            newrow.setId(i * 10);
+            newrow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50));
+            ImageButton btn = new ImageButton(new ContextThemeWrapper(getBaseContext(), R.style.MyButton));
+            btn.setId(first_id);
+            int id_ = btn.getId();
 
-}
+            switch (i) {
+                case 1:
+                    //if state = play show pause else show play
+                    btn.setImageResource(R.drawable.ic_play_white);
+                    break;
+                case 2:
+                    btn.setImageResource(R.drawable.ic_stop_white);
+                    break;
+                case 3:
+                    btn.setImageResource(R.drawable.ic_fit_to_width_white);
+                    break;
+                case 4:
+                    btn.setImageResource(R.drawable.ic_no_sound);
+            }
+                    btn.setOnClickListener(btnclickdrawer);
+
+                    btn.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    newrow.addView(btn);
+                    first_id++;
+                    tl.addView(newrow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1
+                    ));
+
+            }
+
+        }
+
+
+    }
+
