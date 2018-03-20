@@ -1,11 +1,8 @@
 package m1project.remoteandroid.controller;
 
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
@@ -17,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import m1project.remoteandroid.R;
@@ -26,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     TableLayout t1;
     int selectid = 0;
+    Toast toast;
     //pas de popup
     // ajouter etat a a chaque ecran
     View.OnClickListener btnclick = new View.OnClickListener() {
@@ -40,16 +37,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Second button click
 
                 default:
-                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog.setTitle("Attention");
-                    alertDialog.setMessage("Click recu sur le bouton " + view.getId());
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
+                    Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), "Play/Pause sur l'ecran " +(view.getId()) , Toast.LENGTH_SHORT);
+                    toast.show();
+                    String text=new java.util.Date() +" Play/Pause sur l'ecran " +(view.getId());
+                    FileHelper.saveToFile(text.toString());
                     break;
             }
 
@@ -62,57 +54,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //gestion d'un clic simple sur un ecran
         @Override
         public void onClick(View view) {
-
+            Toast toast;
+            String text;
 
             switch (view.getId()) {
 
                 case 100:
-                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog.setTitle("Attention");
-                    alertDialog.setMessage("Play/Pause bouton" + selectid);
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
+                    if (selectid!=0){
+                    toast = Toast.makeText(getApplicationContext(), "Play/Pause sur l'écran " + selectid , Toast.LENGTH_SHORT);
+                     text=new java.util.Date() +"Play/Pause sur l'écran " + selectid ;}
+                    else{
+                        toast = Toast.makeText(getApplicationContext(), "Play/Pause sur tous les écrans ", Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Play/Pause sur tous les écrans " ;}
+                    toast.show();
+                    FileHelper.saveToFile(text.toString());
                     break;
                 case 101:
-                    AlertDialog alertDialog1 = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog1.setTitle("Attention");
-                    alertDialog1.setMessage("Stop Bouton" + selectid);
-                    alertDialog1.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog1.show();
+                    if (selectid!=0){
+                        toast = Toast.makeText(getApplicationContext(), "Stop sur l'ecran " + selectid , Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Stop sur l'écran " + selectid ;}
+                    else{
+                        toast = Toast.makeText(getApplicationContext(), "Stop sur tous les écrans ", Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Stop sur tous les écrans " ;}
+                    toast.show();
+                    FileHelper.saveToFile(text.toString());
                     break;
                 case 102:
-                    AlertDialog alertDialog2 = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog2.setTitle("Attention");
-                    alertDialog2.setMessage("FullScreen bouton" + selectid);
-                    alertDialog2.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog2.show();
+                    if (selectid!=0){
+                        toast = Toast.makeText(getApplicationContext(), "Plein écran sur l'écran " + selectid , Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Plein écran sur l'écran ";}
+                    else{
+                        toast = Toast.makeText(getApplicationContext(), "Commande indisponible ", Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Commande indisponible " ;}
+                    toast.show();
+                    FileHelper.saveToFile(text.toString());
                     break;
                 case 103:
-                    AlertDialog alertDialog3 = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog3.setTitle("Attention");
-                    alertDialog3.setMessage("Mute bouton" + selectid);
-                    alertDialog3.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog3.show();
+                    if (selectid!=0){
+                        toast = Toast.makeText(getApplicationContext(), "Commande indisponible", Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Commande indisponible " ;}
+                    else{
+                        toast = Toast.makeText(getApplicationContext(), "Mute sur tous les écrans", Toast.LENGTH_SHORT);
+                         text=new java.util.Date() +"Mute sur tous les écrans " ;}
+                    toast.show();
+                    FileHelper.saveToFile(text.toString());
                     break;
                 //break;
                 //Second button click
@@ -121,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     break;
             }
+
             selectid=0;
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -154,64 +140,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+    View.OnClickListener scenarioclick = new View.OnClickListener() {
+
+        //gestion d'un clic simple sur un ecran
+        @Override
+        public void onClick(View view) {
+            Toast toast;
+            String text;
+
+            switch (view.getId()) {
+
+                case 200:
+                    toast = Toast.makeText(getApplicationContext(), "Scénario 1 choisi", Toast.LENGTH_SHORT);
+                    toast.show();
+                    text=new java.util.Date() +"Scénario 1 choisi";
+                    FileHelper.saveToFile(text.toString());
+                    break;
+                case 201:
+                    toast = Toast.makeText(getApplicationContext(), "Scénario 2 choisi", Toast.LENGTH_SHORT);
+                    toast.show();
+                    text=new java.util.Date() +"Scénario 2 choisi";
+                    FileHelper.saveToFile(text.toString());
+                    break;
+
+
+                default:
+
+                    break;
+            }
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+            if (drawer.isDrawerOpen(GravityCompat.END)) {
+                drawer.closeDrawer(GravityCompat.END);
+            } else {
+                drawer.openDrawer(GravityCompat.END);
+            }
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        //remove statusbar
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         TableCreation(4, 4);
         ButtonDrawer();
+        ScenarioDrawer();
 
-
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "You have chosen mail option", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
-
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        /*
-        ImageButton menuLeft = (ImageButton) findViewById(R.id.menuLeft);
-        ImageButton menuRight = (ImageButton) findViewById(R.id.menuRight);
-
-
-        menuLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.closeDrawer(GravityCompat.START);
-                } else {
-                    drawer.openDrawer(GravityCompat.START);
-                }
-            }
-        });
-
-        menuRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else {
-                    drawer.openDrawer(GravityCompat.END);
-                }
-            }
-        });
-        */
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
 
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
         NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
@@ -232,30 +213,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    */
-
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
-
-      /*  //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        */
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -263,31 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        String text = "";
-        if (id == R.id.nav_camera) {
-            text = "camera";
-        } else if (id == R.id.nav_gallery) {
-            text = "gallery";
-        } else if (id == R.id.nav_slideshow) {
-            text = "slideshow";
-        } else if (id == R.id.nav_manage) {
-            text = "tools";
-        } else if (id == R.id.nav_share) {
-            text = "share";
-        } else if (id == R.id.nav_send) {
-            text = "send";
-        } else if (id == R.id.nav_home) {
-            text = "home";
-        } else if (id == R.id.nav_bar) {
-            text = "bar";
-        } else if (id == R.id.nav_pool) {
-            text = "pool";
-        }
-        Toast.makeText(this, "You have chosen " + text, Toast.LENGTH_LONG).show();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        drawer.closeDrawer(GravityCompat.END);
+
         return true;
     }
 
@@ -372,6 +311,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         }
+    public void ScenarioDrawer() {
+        TableLayout tl = (TableLayout) findViewById(R.id.tablelayoutdrawer2);
+        int first_id = 200;
+        for (int i = 1; i <= 2; i++) {
+            TableRow newrow = new TableRow(this);
+            newrow.setId(i * 10);
+            newrow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50));
+            Button btn = new Button(new ContextThemeWrapper(getBaseContext(), R.style.MyButton));
+            btn.setId(first_id);
+            btn.setText("Scénario " + i);
+            btn.setTextColor(getResources().getColor(R.color.colorWhite));
+            btn.setTextSize(15);
+            btn.setOnClickListener(scenarioclick);
+            btn.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            newrow.addView(btn);
+            first_id++;
+            tl.addView(newrow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1
+            ));
+
+        }
+
+    }
 
 
     }
