@@ -10,6 +10,8 @@ public class Ecran {
     private String type;
     private String ipv4;
     private String resolution;
+    private int row;
+    private int cols;
     private boolean tactile;
     private boolean orientation;
 
@@ -50,6 +52,22 @@ public class Ecran {
 
     public void setResolution(String resolution) {
         this.resolution = resolution;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
     }
 
     public boolean isTactile() {

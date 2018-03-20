@@ -1,10 +1,11 @@
 package m1project.remoteandroid.model;
 import java.util.LinkedList;
-import java.util.Hashtable;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+/**
+ * Created by Zephyr on 23/02/2018.
+ */
 
-<<<<<<< Updated upstream
 public class Scenario {
     Ecran video;
     String file;
@@ -32,58 +33,69 @@ public class Scenario {
 
         //liste screen : cle valeur : id ecran, position
     }
-=======
-import java.util.Iterator;
->>>>>>> Stashed changes
 
-import java.util.LinkedHashMap;
-
-import java.util.Map;
-
-import java.util.Map.Entry;
-
-import java.util.Set;
-
-
-/**
- * Created by Zephyr on 23/02/2018.
- */
-
-public class Scenario {
-    Map<String,ArrayList<Integer> > ecranpos;
-    ArrayList video;
-    String name;
-
-    public Scenario(ArrayList video, String name,HashMap ecranpos) {
-        this.ecranpos = new HashMap<>();
-        this.ecranpos.putAll(ecranpos);
-        this.video=new ArrayList();
-        this.video= (ArrayList)video.clone();
-        this.name = name;
+    public String getFile() {
+        return file;
     }
 
-    public Map<String, ArrayList<Integer>> getEcranpos() {
-        return ecranpos;
+    public void setFile(String file) {
+        this.file = file;
     }
 
-    public void setEcranpos(Map<String, ArrayList<Integer>> ecranpos) {
-        this.ecranpos = ecranpos;
+    public List getScreens() {
+        return screens;
     }
 
-    public ArrayList getVideo() {
-        return video;
+    public void setScreens(List screens) {
+        this.screens = screens;
     }
 
-    public void setVideo(ArrayList video) {
-        this.video = video;
+    public boolean isDistributed() {
+        return distributed;
     }
 
-    public String getName() {
-        return name;
+    public void setDistributed(boolean distributed) {
+        this.distributed = distributed;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean isMute() {
+        return mute;
+    }
+
+    public void setMute(boolean mute) {
+        this.mute = mute;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public boolean isLoop() {
+        return loop;
+    }
+
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public Float getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(Float departure) {
+        this.departure = departure;
     }
 }
 

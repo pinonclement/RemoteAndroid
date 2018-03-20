@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        multiDexEnabled true
         applicationId "m1project.remoteandroid"
         minSdkVersion 21
         targetSdkVersion 26
@@ -27,6 +26,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.android.support:appcompat-v7:X.X.X'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.google.code.gson:gson:2.8.2'
-}
+    compile 'com.android.support:design:26.1.0'}
