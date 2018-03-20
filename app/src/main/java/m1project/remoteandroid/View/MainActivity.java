@@ -1,4 +1,4 @@
-package m1project.remoteandroid.controller;
+package m1project.remoteandroid.View;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +17,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import m1project.remoteandroid.R;
+import m1project.remoteandroid.controller.FileHelper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

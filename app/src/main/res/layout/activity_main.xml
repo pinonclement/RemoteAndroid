@@ -17,9 +17,7 @@
         android:id="@+id/nav_view"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-
-        >
+        android:layout_gravity="start">
 
         <TableLayout
             android:id="@+id/tablelayoutdrawer"
@@ -35,11 +33,20 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view2"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/activity_main_drawer1" >
+        android:layout_gravity="end">
+
+        <TableLayout
+            android:id="@+id/tablelayoutdrawer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_horizontal|fill_horizontal|start"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp">
+
+
+        </TableLayout>
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

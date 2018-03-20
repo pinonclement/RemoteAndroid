@@ -1,4 +1,4 @@
-package m1project.remoteandroid.Temp;
+package m1project.remoteandroid.controller;
 
 import android.content.Context;
 import android.os.Environment;
@@ -12,9 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by Tan on 2/18/2016.
- */
+// http://instinctcoder.com/read-and-write-text-file-in-android-studio/
+
 public class FileHelper {
     final static String fileName = "data.txt";
     final static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/remoteandroid/" ;
