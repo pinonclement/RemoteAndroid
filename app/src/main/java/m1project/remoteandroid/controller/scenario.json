@@ -1,0 +1,26 @@
+{
+  "scenario": [{
+    "ecranpos": {"s1":[1,1],"s2": [1,2],"s3": [1,3],"s4": [1,4],"s5": [2,1],"s6": [2,2],"s7": [2,3],"s8": [2,4],"s9": [3,1],"s10": [3,2],"s11": [3,3],"s12": [3,4],"s13": [4,1],"s14": [4,2],"s15": [4,3],"s16": [4,4]},
+    "name": "scenario1",
+    "video":{
+      "videos":{
+        "ids": "scr1",
+        "type": "typechosse",
+        "ipv4": "192.168.1.3",
+        "resolution": "1920*1200",
+        "tactile": false,
+        "orientation": true
+      },
+      "idv": "v1",
+      "screens": ["s1", "s2", "s4", "s5"],
+      "file": "fichier_test",
+      "distributed": true,
+      "mute": false,
+      "state": false,
+      "loop": true,
+      "volume": 15,
+      "departure": 15.6
+    }
+  }],
+  "name":"sc1"
+}
