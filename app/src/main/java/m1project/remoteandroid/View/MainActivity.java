@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        TableCreation(4, 4);
+        TableCreation(4,4 );
         ButtonDrawer();
         ScenarioDrawer();
 
